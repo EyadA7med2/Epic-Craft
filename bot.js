@@ -148,7 +148,7 @@ client.on('message', message => {
     }
 });
 
-var client = new Discord.Client();
+client = new Discord.Client();
 
 client.on("message", async msg => {
 
@@ -178,15 +178,15 @@ client.on("message", async msg => {
 
     if (count == 0) return msg.channel.send("DiscordAPI Err : 0 messages ???")
 
-    if (count > 100) return msg.channel.send(`DiscordAPI Err : cannot delete ${args[1]} message..`)
+    if (count > 100) return msg.channel.send(DiscordAPI Err : cannot delete ${args[1]} message..)
 
-    if (fetched.length == 0) return msg.channel.send(`DiscordAPI Err : ${msg.channel.name} is empty..`)
+    if (fetched.length == 0) return msg.channel.send(DiscordAPI Err : ${msg.channel.name} is empty..)
 
     else {
     try {
         fetched.then(async msgs => {
           await msg.channel.bulkDelete(msgs)
-          await msg.channel.send(`Bulked ${msgs.size-=1} message.`).then(msg => {
+          await msg.channel.send(Bulked ${msgs.size-=1} message.).then(msg => {
             msg.delete(4000)
           })
         })
@@ -195,7 +195,7 @@ client.on("message", async msg => {
     }
     }
   }
-})
+});
 
 
 
