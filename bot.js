@@ -178,9 +178,9 @@ client.on("message", async msg => {
 
     if (count == 0) return msg.channel.send("DiscordAPI Err : 0 messages ???")
 
-    if (count > 100) return msg.channel.send(`DiscordAPI Err : cannot delete ${args[1]} message..`)
+    if (count > 100) return msg.channel.send(DiscordAPI Err : cannot delete ${args[1]} message..)
 
-    if (fetched.length == 0) return msg.channel.send(DiscordAPI Err : ${msg.channel.name} is empty..)
+     if (count > 100) return msg.channel.send(`DiscordAPI Err : cannot delete ${args[1]} message..`)
 
     else {
     try {
