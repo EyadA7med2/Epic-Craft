@@ -148,53 +148,45 @@ client.on('message', message => {
     }
 });
 
-client = new Discord.Client();
+client.on('message', message => {
+    var prefix = "!";
+   if(!message.channel.guild) return;
+if(message.content.startsWith(prefix + 'clear')) {
+if(!message.channel.guild) return message.channel.send('**This Command is Just For Servers**').then(m => m.delete(5000));
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return      message.channel.send('**You Do not have permission** `MANAGE_MESSAGES`' );
+let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+let request = `Requested By ${message.author.username}`;
+message.channel.send(`**Are You sure you want to clear the chat?**`).then(msg => {
+msg.react('✅')
+.then(() => msg.react('❌'))
+.then(() =>msg.react('✅'))
 
-client.on("message", async msg => {
+let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
 
-    if (msg.channel.type !== "clear") return undefined;
+let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+reaction1.on("collect", r => {
+message.channel.send(`Chat will delete`).then(m => m.delete(5000));
+var msg;
+        msg = parseInt();
 
-    if (msg.auhtor.bot) return undefined;
+      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+      message.channel.sendMessage("", {embed: {
+        title: "`` Chat Deleted ``",
+        color: 0x06DF00,
+        footer: {
 
-    var args = msg.content.split(" ")
+        }
+      }}).then(msg => {msg.delete(3000)});
 
-    var prefix = "!"
-
-    if (msg.content.toLowerCase().startsWith(prefix + "purge")) {
-
-    if(!msg.guild.members.get(msg.author.id).hasPermission("MANAGE_MESSAGES")) return msg.channel.send("You lack permissions.")
-
-    if(!msg.guild.members.get(client.user.id).hasPermission("MANAGE_MESSAGES")) return msg.channel.send("I lack permissions.")
-
-    if (!args[1]) return msg.channel.send("DiscordAPI Err : Missing args.")
-
-    var count = parseInt(args[1]);
-
-    var fetched = msg.channel.fetchMessages({limit : count})
-
-    if (isNaN(count)) return msg.channel.send("DiscordAPI Err : Only numbers are allowed.")
-
-    if (count < 0) return msg.channel.send("DiscordAPI Err : Unvalid numbers.")
-
-    if (count == 0) return msg.channel.send("DiscordAPI Err : 0 messages ???")
-
-    if (count > 100) return msg.channel.send(DiscordAPI Err : cannot delete ${args[1]} message..)
-
-     if (count > 100) return msg.channel.send(`DiscordAPI Err : cannot delete ${args[1]} message..`)
-
-    else {
-    try {
-        fetched.then(async msgs => {
-          await msg.channel.bulkDelete(msgs)
-          await msg.channel.send(Bulked ${msgs.size-=1} message.).then(msg => {
-            msg.delete(4000)
-          })
-        })
-    } catch (e) {
-      console.log(e.stack)
-    }
-    }
-  }
+})
+reaction2.on("collect", r => {
+message.channel.send(`**Chat deletion cancelled**`).then(m => m.delete(5000));
+msg.delete();
+})
+})
+}
 });
 
 
