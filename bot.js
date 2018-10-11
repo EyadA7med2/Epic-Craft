@@ -1,11 +1,10 @@
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
-  console.log(`BoardCast Is On`);
-});
+const Discord = require('discord.js');
+const client = new Discord.Client();
+const prefix = !
 
 client.on('ready', () => {
-    client.user.setGame(`رجع البوت`, "http://twitch.tv/Streammingg")    
-});
+  console.log(`Logged in as ${client.user.tag}!`);
+client.user.setGame(`رجع البوت`,"http://twitch.tv/S-F")
 
 
 client.on('message',message =>{
@@ -170,5 +169,10 @@ client.on('message', message => {
   })
 }
 });
+  
+  
+  
+  
+  
 
 client.login(process.env.BOT_TOKEN);
