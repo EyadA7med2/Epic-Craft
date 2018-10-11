@@ -1,12 +1,14 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
-const prefix = '.'
-
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`رجع البوت`,"http://twitch.tv/S-F")
+  console.log(`BoardCast Is On`);
+});
 
-  client.on('message',message =>{
+client.on('ready', () => {
+    client.user.setGame(`رجع البوت`, "http://twitch.tv/Streammingg")    
+});
+
+
+client.on('message',message =>{
     var prefix = "!";
       if(message.content.startsWith(prefix + 'bc')) {
     if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
