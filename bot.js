@@ -6,7 +6,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 client.on('ready', () => {
-    client.user.setGame(`GL`, "http://twitch.tv/Streammingg")    
+    client.user.setGame(`!bc للبرودكاست`, "http://twitch.tv/Streammingg")    
 });
 
 client.on('message',message =>{
