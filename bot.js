@@ -249,9 +249,9 @@ By ${message.author.username}** `)
 });
 
 client.on('message', async rokz => {
-var prefix = "$"
+var prefix = "!"
  
-    if(rokz.content.startsWith(prefix + "تقديم")) {
+    if(rokz.content.startsWith(prefix + "Submit")) {
  
       let lang = '';
  
