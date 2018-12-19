@@ -549,7 +549,7 @@ client.on('message', message => {
   command = command.slice(prefix.length);
   let args = message.content.split(" ").slice(1);
   
-  if (command === '!invite') {
+  if (command === '!invites') {
     message.guild.fetchInvites().then(invs => {
       let member = client.guilds.get(message.guild.id).members.get(message.author.id);
       let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
