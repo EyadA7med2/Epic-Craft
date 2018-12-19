@@ -372,63 +372,64 @@ By ${message.author.username}** `)
 }
 });
 
-client.on("message", message => {
-    let roleembed1 = new Discord.RichEmbed()
-    .setDescription(`
-    أمثله على الأوامر :
-    !role @mention rolename : لسحب رتبة لعضو معين
-    !role all rolename : لسحب رتبة للجميع
-    !role humans rolename : لسحب رتبة للاشخاص فقط
-    !role bots rolename : لسحب رتبة لجميع البوتات`)
-    .setFooter('Requested by '+message.author.username, message.author.avatarURL)
-      var args = message.content.split(' ').slice(1);
-      var msg = message.content.toLowerCase();
-      if( !message.guild ) return;
-      if( !msg.startsWith( prefix + 'role' ) ) return;
-      if(!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(' **__ليس لديك صلاحيات__**');
-      if( msg.toLowerCase().startsWith( prefix + 'role' ) ){
-          if( !args[0] ) return message.channel.sendEmbed(roleembed1)
-          if( !args[1] ) return message.channel.sendEmbed(roleembed1)
-          var role = msg.split(' ').slice(2).join(" ").toLowerCase();
-          var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
-          if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );if( message.mentions.members.first() ){
-              message.mentions.members.first().removeRole( role1 );
-              return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم سحب من **');
-          }
-          if( args[0].toLowerCase() == "all" ){
-              message.guild.members.forEach(m=>m.removeRole( role1 ))
-              return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من الكل رتبة**');
-          } else if( args[0].toLowerCase() == "bots" ){
-              message.guild.members.filter(m=>m.user.bot).forEach(m=>m.removeRole(role1))
-              return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البوتات رتبة**');
-          } else if( args[0].toLowerCase() == "humans" ){
-              message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.removeRole(role1))
-              return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم سحب من البشريين رتبة**');
-          }  
-      } else {
-          if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد اعطائها الرتبة**' );
-          if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );
-          var role = msg.split(' ').slice(2).join(" ").toLowerCase();
-          var role1 = message.guild.roles.filter( r=>r.name.toLowerCase().indexOf(role)>-1 ).first();
-          if( !role1 ) return message.reply( '**:x: يرجى وضع الرتبة المراد اعطائها للشخص**' );if( message.mentions.members.first() ){
-              message.mentions.members.first().addRole( role1 );
-              return message.reply('**:white_check_mark: [ '+role1.name+' ] رتبة [ '+args[0]+' ] تم اعطاء **');
-          }
-          if( args[0].toLowerCase() == "all" ){
-              message.guild.members.forEach(m=>m.addRole( role1 ))
-              return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء الكل رتبة**');
-          } else if( args[0].toLowerCase() == "bots" ){
-              message.guild.members.filter(m=>m.user.bot).forEach(m=>m.addRole(role1))
-              return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البوتات رتبة**');
-          } else if( args[0].toLowerCase() == "humans" ){
-              message.guild.members.filter(m=>!m.user.bot).forEach(m=>m.addRole(role1))
-              return  message.reply('**:white_check_mark: [ '+role1.name+' ] تم اعطاء البشريين رتبة**');
-          }
-      }
-  });
+client.on('message', message => {   
+if (message.author.boss) return;
+var prefix = "!";
+if (!message.content.startsWith(prefix)) return;
+let command = message.content.split(" ")[0];
+command = command.slice(prefix.length);
+let args = message.content.split(" ").slice(1);
+if (command == "mute") {
+if (!message.channel.guild) return;
+if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply("انت لا تمتلك صلاحيه BAN_MEMBERS").then(msg => msg.delete(5000));
+if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("انا لا امتلك صلاحيه BAN_MEMBERS").then(msg => msg.delete(5000));;
+let user = message.mentions.users.first();
+let muteRole = message.guild.roles.find("name", "Muted");
+if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").then(msg => {msg.delete(5000)});
+if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').then(msg => {msg.delete(5000)});
+let reason = message.content.split(" ").slice(2).join(" ");
+message.guild.member(user).addRole(muteRole);
+const muteembed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setTitle('**Noobbot**')
+        .setDescription(`**Done Mute ${user}
+By ${message.author.id}** `)
+message.channel.send({embed : muteembed});
+var muteembeddm = new Discord.RichEmbed()
+.setAuthor(`Muted!`, user.displayAvatarURL)
+.setDescription(`
+انت معاقب بميوت! 
+ ${message.author.tag} من قبل
+[ ${reason} ] السبب
+`)
+.setFooter(`في سيرفر : ${message.guild.name}`)
+.setColor("RANDOM")
+ user.send( muteembeddm);
+}
 
-
-
+  if (command == "unmute") {
+if (!message.channel.guild) return;
+if(!message.guild.member(message.author).hasPermission("MANAGE_MESSAGES")) return message.reply("انتا لا تملك صلاحيات").then(msg => msg.delete(5000));
+if(!message.guild.member(client.user).hasPermission("MANAGE_MESSAGES")) return message.reply("البوت لايملك صلاحيات ").then(msg => msg.delete(5000));;
+let user = message.mentions.users.first();
+let muteRole = message.guild.roles.find("name", "Muted");
+if (!muteRole) return message.reply("** لا يوجد رتبة الميوت 'Muted' **").then(msg => {msg.delete(5000)});
+if (message.mentions.users.size < 1) return message.reply('** يجب عليك المنشن اولاً **').then(msg => {msg.delete(5000)});
+let reason = message.content.split(" ").slice(2).join(" ");
+message.guild.member(user).removeRole(muteRole);
+const unmuteembed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setTitle('**Noobbot**')
+        .setDescription(`**Done Unmute ${user}
+By ${message.author.username}** `)
+message.channel.send({embed : unmuteembed}).then(msg => msg.delete(5000));
+var unmuteembeddm = new Discord.RichEmbed()
+.setDescription(`تم فك الميوت عنك ${user}`)
+.setAuthor(`UnMute!`, user.displayAvatarURL)
+.setColor("RANDOM")
+  user.send( unmuteembeddm);
+}
+});
 
 
 
