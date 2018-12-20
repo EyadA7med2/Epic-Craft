@@ -559,98 +559,56 @@ client.on('message', message => {
 });
 }});
 
-const Discord = require("discord.js");
-const fs = require("fs");
-const ms = require("ms");
-let warns = JSON.parse(fs.readFileSync("./warnings.json"));;
-const client = new Discord.Client();
- 
- 
-client.on('message', async message => {
- 
-  if (message.author.x5bz) return;
-  if (!message.content.startsWith(prefix)) return;
- 
- 
-  let command = message.content.split(" ")[0];
-  command = command.slice(prefix.length);
- 
-  let args = message.content.split(" ").slice(1);
- 
-  if (command == "warn") { //??? ???????
- 
-               if(!message.channel.guild) return message.reply('** This command only for servers**');
-         
-  if(!message.guild.member(message.author).hasPermission("BAN_MEMBERS")) return message.reply("**You Don't Have ` BAN_MEMBERS ` Permission**");
-  let user = message.mentions.users.first();
-  let reason = message.content.split(" ").slice(2).join(" ");
- 
-  if (message.mentions.users.size < 1) return message.reply("**???? ???**");
-  if(!reason) return message.reply ("**???? ??? ?????**");
- 
- 
-  if(!warns[user.id]) warns[user.id] = {
-    warns: 0
-  };
- 
-  warns[user.id].warns++;
- 
-  fs.writeFile("./warnings.json", JSON.stringify(warns), (err) => {
-    if (err) console.log(err)
-  });
- 
- 
-  const banembed = new Discord.RichEmbed()
-  .setAuthor(`WARNED!`, user.displayAvatarURL)
-  .setColor("RANDOM")
-  .setTimestamp()
-  .addField("**User:**",  '**[ ' + `${user.tag}` + ' ]**')
-  .addField("**By:**", '**[ ' + `${message.author.tag}` + ' ]**')
-  .addField("**Reason:**", '**[ ' + `${reason}` + ' ]**')
-   client.channels.find('name', 'log').send({
-    embed : banembed
-  })
- 
-    if(warns[user.id].warns == 2){ //??? ???????? ??????
-    let muterole = message.guild.roles.find(`name`, "Muted");
-    if(!muterole){
-      try{
-        muterole = await message.guild.createRole({
-          name: "Muted",
-          color: "#000000",
-          permissions:[]
-        })
-        message.guild.channels.forEach(async (channel, id) => {
-          await channel.overwritePermissions(muterole, {
-            SEND_MESSAGES: false,
-            ADD_REACTIONS: false
-          });
-        });
-      }catch(e){
-        console.log(e.stack);
+var RAW2 = ["ًں“™__60%__  **|**  ًں“ک__40%__","ًں“™__63%__  **|**  ًں“ک__37%__","ًں“™__89%__  **|**  ًں“ک__11%__","ًں“™__97%__  **|**  ًں“ک__3%__"]
+client.on('message', message => {
+    if(!message.guild) return;
+    if (message.author.bot) return;
+      let id = message.author.id,prefix="!";
+      if (ti[id] && (new Date).getTime() - ti[id] < 20*1000) {
+          let r = (new Date).getTime() - ti[id];
+          r = 20*1000 - r;
+      message.channel.send(` **Please wait ${pretty(r, {verbose:true})}**`).then(m => m.delete(5000));
+      return;
       }
-    }
-   
-    let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!tomute) return message.reply("**??? ???? ?????? ?????**:x: ") .then(m => m.delete(5000));
-   
-    let mutetime = "60s";
-    await(tomute.addRole(muterole.id));
-    message.channel.send(`<@${user.id}> has been temporarily muted`);
+      if ( message.content == prefix+'لو خيروك'){
+         
+          try{
+  //body
+  }catch(e){
  
-    setTimeout(async function(){
-    await(tomute.removeRole(muterole.id));
-      message.reply(`<@${user.id}> has been unmuted.`)
-    }, ms(mutetime))
   }
-  if(warns[user.id].warns == 3){  //??? ???????? ??????
-    message.guild.member(user).ban(reason);
-    message.reply(`<@${user.id}> has been banned.`)
-  }
+         var Embed = new Discord.RichEmbed()
+.setImage(RAW1[Math.floor(Math.random() * RAW2.length)])
+message.channel.sendEmbed(Embed).then(msg => {
+    msg.react('ًں“ک').then( r => {
+        msg.react('ًں“™')
  
-}
-}
-);
+        let blueFilter = (reaction, user) => reaction.emoji.name === 'ًں“ک' && user.id === message.author.id;
+    let orangeFilter = (reaction, user) => reaction.emoji.name === 'ًں“™' && user.id === message.author.id;
+ 
+ 
+    let blue = msg.createReactionCollector(blueFilter, { time: 15000 });
+    let orange = msg.createReactionCollector(orangeFilter, { time: 15000 });
+ 
+ 
+    blue.on("collect", r => {
+        msg.delete();
+        message.channel.send(RAW2[Math.floor(Math.random() * RAW2.length)]).then(m => m.delete(60000));
+ 
+        })
+       
+ orange.on("collect", r => {
+        msg.delete();
+        message.channel.send(RAW2[Math.floor(Math.random() * RAW2.length)]).then(m => m.delete(60000));
+ 
+        })
+ 
+                                })
+                                })
+                              ti[id] = (new Date).getTime()
+                                }
+                                });
+
 
 
 
