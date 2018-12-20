@@ -6,7 +6,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 client.on('ready', () => {
-    client.user.setGame(`.لعبة لو خيروك بالبوت ؟ جرب`, "http://twitch.tv/Streammingg")    
+    client.user.setGame(`New Name Vilo Community`, "http://twitch.tv/Streammingg")    
 });
 
 client.on('message',message =>{
@@ -559,55 +559,6 @@ client.on('message', message => {
 });
 }});
 
-var RAW2 = ["ًں“™__60%__  **|**  ًں“ک__40%__","ًں“™__63%__  **|**  ًں“ک__37%__","ًں“™__89%__  **|**  ًں“ک__11%__","ًں“™__97%__  **|**  ًں“ک__3%__"]
-client.on('message', message => {
-    if(!message.guild) return;
-    if (message.author.bot) return;
-      let id = message.author.id,prefix="!";
-      if (ti[id] && (new Date).getTime() - ti[id] < 20*1000) {
-          let r = (new Date).getTime() - ti[id];
-          r = 20*1000 - r;
-      message.channel.send(` **Please wait ${pretty(r, {verbose:true})}**`).then(m => m.delete(5000));
-      return;
-      }
-      if ( message.content == prefix+'لو خيروك'){
-         
-          try{
-  //body
-  }catch(e){
- 
-  }
-         var Embed = new Discord.RichEmbed()
-.setImage(RAW1[Math.floor(Math.random() * RAW2.length)])
-message.channel.sendEmbed(Embed).then(msg => {
-    msg.react('ًں“ک').then( r => {
-        msg.react('ًں“™')
- 
-        let blueFilter = (reaction, user) => reaction.emoji.name === 'ًں“ک' && user.id === message.author.id;
-    let orangeFilter = (reaction, user) => reaction.emoji.name === 'ًں“™' && user.id === message.author.id;
- 
- 
-    let blue = msg.createReactionCollector(blueFilter, { time: 15000 });
-    let orange = msg.createReactionCollector(orangeFilter, { time: 15000 });
- 
- 
-    blue.on("collect", r => {
-        msg.delete();
-        message.channel.send(RAW2[Math.floor(Math.random() * RAW2.length)]).then(m => m.delete(60000));
- 
-        })
-       
- orange.on("collect", r => {
-        msg.delete();
-        message.channel.send(RAW2[Math.floor(Math.random() * RAW2.length)]).then(m => m.delete(60000));
- 
-        })
- 
-                                })
-                                })
-                              ti[id] = (new Date).getTime()
-                                }
-                                });
 
 
 
