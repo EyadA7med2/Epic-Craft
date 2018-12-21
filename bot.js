@@ -5,9 +5,7 @@ const prefix = "!"
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
-client.on('ready', () => {
-    client.user.setGame(`Vido Community`, "http://twitch.tv/Streammingg")    
-});
+
 
 client.on('message',message =>{
     var prefix = "!";
