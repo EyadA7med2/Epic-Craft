@@ -6,9 +6,8 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 client.on('ready', () => {
-    client.user.setGame(`AEDD COMMUNITY`, "http://twitch.tv/Streammingg")    
+    client.user.setGame(`Vido System`, "http://twitch.tv/Streammingg")    
 });
-
 
 client.on('message',message =>{
     var prefix = "!";
@@ -559,28 +558,6 @@ client.on('message', message => {
 
 });
 }});
-
-client.on('ready', function(){
-    var ms = 7000;
-    var setGame = [©GMZN Host,'©Vido Host','Say : !bc || Brodcast','Vido Community','*Server'];
-    var i = -7;
-    var j = 7;
-    setInterval(function (){
-        if( i == -7){
-            j = 7;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -7;
-        }
-        i = i+j;
-        client.user.setGame(setGame[i]);
-    }, ms);70000
- 
- 
- 
-});
-
-
 
 
 
