@@ -6,7 +6,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 client.on('ready', () => {
-    client.user.setGame(`Vido System`, "http://twitch.tv/Streammingg")    
+    client.user.setGame(`!new For Tickets`, "http://twitch.tv/Streammingg")    
 });
 
 client.on('message',message =>{
