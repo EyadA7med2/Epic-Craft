@@ -190,7 +190,7 @@ msg.delete();
 });
 
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","✦ DISCORD MEMBER"));
+    member.addRole(member.guild.roles.find("name","✦ Vido » Member"));
     });
 
 client.on('message', msg => { 
