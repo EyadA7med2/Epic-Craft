@@ -30,7 +30,7 @@ client.on('ready', () => {
 
 client.on('ready', () => {
 
-    client.user.setActivity("$help | B3THRH SERVER",{type: 'Streaming'})
+    client.user.setActivity("$help | B3THRH SERVER | 2.K Soon",{type: 'Streaming'})
 
 });
 
