@@ -2054,7 +2054,11 @@ const kingmas = [
   }
 });
 
-
+client.on('message', msg => { 
+if (msg.content === 'رابط') { 
+msg.reply('https://discord.gg/A2vDGNP'); 
+} 
+});
 
 
 
