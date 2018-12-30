@@ -2072,9 +2072,14 @@ client.on('message',async message => {
   }
 });
 
-client.on('ready',async () => {
-  client.channels.find(ch => ch.id === "- B3thrh" && ch.type === 'voice').join();
-});
+
+
+
+
+
+
+
+
 
 
 
