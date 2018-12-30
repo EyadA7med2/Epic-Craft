@@ -1183,4 +1183,4 @@ Server Count: __${guild.memberCount}__**`)
 })
 
 
-client.login('token');
+client.login(process.env.BOT_TOKEN);
