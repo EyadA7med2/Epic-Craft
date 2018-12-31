@@ -52,7 +52,7 @@ if(message.content.startsWith(prefix + 'bc')) {
 if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
 if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
-let copy = "SkyBot.";
+let copy = "B3THRH Bot.";
 let request = `Requested By ${message.author.username}`;
 if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من إرسالك البرودكاست؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
 msg.react('✅')
@@ -770,7 +770,7 @@ client.on('message', message => { //By |.iiMostafaYT#1001
             .setAuthor(client.user.username,client.user.avatarURL) //By |.iiMostafaYT#1001
             .setThumbnail(client.user.avatarURL) //By |.iiMostafaYT#1001
             .setColor('RANDOM') //By |.iiMostafaYT#1001
-            .setTitle('Info SkyBot.') //By |.iiMostafaYT#1001
+            .setTitle('Info B3THRH Bot.') //By |.iiMostafaYT#1001
             .addField('**My Ping**' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true) //By |.iiMostafaYT#1001
             .addField('**RAM Usage**', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true) //By |.iiMostafaYT#1001
             .addField('**Servers**', [client.guilds.size], true) //By |.iiMostafaYT#1001
@@ -1530,7 +1530,7 @@ if(message.content == prefix+"عواصم"){
                                         .setColor("#707070")
                                         .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
                                         .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
-                                        .setFooter(`SkyBot.`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
+                                        .setFooter(`B3THRH ot.`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')                                 
                                         .setThumbnail(heg.avatarURL);
                                         message.channel.send(id)
                                     }       });
