@@ -20,7 +20,7 @@ const gif = require("gif-search");
 
 const client = new Discord.Client({disableEveryone: true});
 
-const prefix = "$";$
+const prefix = "$"
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
