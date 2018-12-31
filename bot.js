@@ -30,7 +30,7 @@ client.on('ready', () => {
 
 client.on('ready', () => {
 
-    client.user.setActivity("$help | B3THRH Network",{type: 'Streaming'})
+    client.user.setGame(`B3THRH Network`, "http://twitch.tv/Streammingg") 
 
 });
 
